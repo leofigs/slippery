@@ -2,7 +2,7 @@
 from standard library for support colored output.
 """
 from pstats import Stats, func_get_function_name
-import slippery.output as o
+import slippery.colors as color
 
 
 def f8(x):
@@ -13,18 +13,18 @@ def func_std_string(func_name):
     if func_name[:2] == ('~', 0):
         name = func_name[2]
         if name.startswith('<') and name.endswith('>'):
-            return '{%s}' % o.blue(name[1:-1])
+            return '{%s}' % color.blue(name[1:-1])
         else:
             return name
     else:
-        return o.blue("%s:%d(%s)") % func_name
+        return color.blue("%s:%d(%s)") % func_name
 
 
 class CustomStats(Stats):
     def print_title(self):
         row = 'ncalls  tottime  percall  cumtime  percall'
-        print(o.green('   ' + row), end=' ', file=self.stream)
-        print(o.green('filename:line(function)'), file=self.stream)
+        print(color.green('   ' + row), end=' ', file=self.stream)
+        print(color.green('filename:line(function)'), file=self.stream)
 
     def print_line(self, func):
         cc, nc, tt, ct, callers = self.stats[func]
@@ -56,7 +56,7 @@ class CustomStats(Stats):
         for func in self.top_level:
             print(indent, func_get_function_name(func), file=self.stream)
 
-        print(indent, o.green('{} function calls'.format(self.total_calls)),
+        print(indent, color.green('{} function calls'.format(self.total_calls)),
               end=' ', file=self.stream)
         if self.total_calls != self.prim_calls:
             print("(%d primitive calls)" % self.prim_calls, end=' ', file=self.stream)
