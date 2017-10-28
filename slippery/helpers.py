@@ -56,11 +56,13 @@ class CustomStats(Stats):
         for func in self.top_level:
             print(indent, func_get_function_name(func), file=self.stream)
 
-        print(indent, color.green('{} function calls'.format(self.total_calls)),
-              end=' ', file=self.stream)
+        print(indent, color.green('{} function calls'.format(
+            self.total_calls)), end=' ', file=self.stream)
         if self.total_calls != self.prim_calls:
-            print("(%d primitive calls)" % self.prim_calls, end=' ', file=self.stream)
-        print("in \033[33m{:.8f} \033[92mseconds\033[0m.".format(self.total_tt), file=self.stream)
+            print("(%d primitive calls)" % self.prim_calls, end=' ',
+                  file=self.stream)
+        print("in \033[33m{:.8f} \033[92mseconds\033[0m.".format(
+            self.total_tt), file=self.stream)
         print(file=self.stream)
         width, list = self.get_print_list(amount)
         if list:

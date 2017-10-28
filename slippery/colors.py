@@ -9,6 +9,7 @@ COLORS = {
     'cyan': CYAN,
 }
 
+
 def color_line(msg, clr):
     return '{}{}{}'.format(COLORS[clr], msg, RESET)
 

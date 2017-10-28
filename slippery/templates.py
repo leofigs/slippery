@@ -39,11 +39,12 @@ class LinesPrinter(object):
 
 
 FUNC_HEADER_TEMPLATE = Template(BLUE_LINES + """
-${green}File${reset}: {file} [line {line}]: 
+${green}File${reset}: {file} [line {line}]:
 ${green}Function${reset}: ${bold}{func}(${reset}{signature}${bold})${reset}
 ${green}Positional arguments${reset}: {args}
 ${green}Keyword arguments${reset}: {kwargs}
 """ + LINES).safe_substitute(**COLORS)
+
 
 def format_function_header(func, args, kwargs):
     args, kwargs = represent_params(args, kwargs)
